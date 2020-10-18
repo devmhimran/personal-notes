@@ -1,0 +1,16 @@
+body{
+    background-color: #f9f9f9;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.card{
+    width: 420px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.card-body .card-title h3{
+    margin-bottom: 25px;
+    font-weight: 700;
+}
