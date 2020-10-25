@@ -1,1 +1,89 @@
-{\rtf1}
+body {
+    /* font-family: "Lato", sans-serif; */
+  }
+  .side-menu i{
+      margin-top: 25px;
+      color: #262524;
+  }
+  .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #262524;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+.right-side{
+      float: right;
+  }
+.right-side .profile img{
+      margin: 15px;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      object-fit: cover;
+  }
+.right-side .dropdown{
+    color: #262524;
+    margin: 15px;
+}
+
+
+.card-body .main-text p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+.container#blur.active{
+    filter: blur(20px);
+    pointer-events: none;
+    user-select: none;
+  }
+#popup{
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 600px;
+    padding: 50px;
+    box-shadow: 0px 5px 30px rgba(0,0,0,0.3);
+    background: #fff;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.5s;
+}
+#popup.actve{
+    top: 50%;
+    visibility: visible;
+    opacity: 1;
+    /* transition: 0.5s; */
+}
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
