@@ -16,7 +16,17 @@
 
 
 
-<textarea name="editor1"></textarea>
+<div class="container">
+    <div class="card w-50 mx-auto mt-5">
+       
+        <textarea name="editor1"></textarea>
+        
+    </div>
+</div>
+
+
+
+
                 <script>
                         CKEDITOR.replace( 'editor1' );
                 </script>

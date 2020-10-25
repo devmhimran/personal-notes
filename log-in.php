@@ -28,11 +28,11 @@ if (isset($_POST['log_in'])) {
 
             session_start();
             $_SESSION['id'] = $f_data['id'];
-            $_SESSION['user_name'] = $f_data['user1_name'];
+            $_SESSION['user_name'] = $f_data['user_name'];
             $_SESSION['user_username'] = $f_data['user_username'];
-            $_SESSION['user_email'] = $f_data['email'];
+            $_SESSION['user_email'] = $f_data['user_email'];
             $_SESSION['user_photo'] = $f_data['user_photo'];
-            header("location:profile.php");
+            header("location:index.php");
         }else{
             $valid =  "<p class='invailed-msg'>Wrong Password<button style='color:red;' class='close' data-dissmiss='alert'>&times;</button></p>";
         }

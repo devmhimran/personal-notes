@@ -1,3 +1,20 @@
+<?php
+
+include 'db/db.php';
+include 'db/function.php';
+
+session_start();
+if(!isset($_SESSION['id']) AND !isset($_SESSION['user_name']) AND !isset($_SESSION['user_username'])){
+      header("location:log-in.php");
+    }
+
+if(isset($_GET['logout']) AND $_GET['logout'] == 'user-logout'){
+  session_destroy();
+  setcookie('user_re_log','',time() - (60*60*24*365));
+  header("location:log-in.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,8 +39,8 @@
           <span class="side-menu" style="font-size:30px;cursor:pointer" onclick="openNav()"><i class="fas fa-bars"></i></span>
           <div class="right-side">
               <div class="profile">
-                  <img src="assets/img/user_img/untitled-1.jpg" alt="">
-                  <a class="dropdown" href=""><i class="fas fa-chevron-down"></i></a>
+                  <img src="assets/img/user_img/<?php echo $_SESSION['user_photo'];?>" alt="">
+                  <a class="dropdown" href="?logout=user-logout"><i class="fas fa-sign-out-alt"></i></a>
               </div>
 
           </div>
