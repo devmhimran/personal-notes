@@ -90,6 +90,7 @@ if (isset($_POST['log_in'])) {
                         <input class="btn btn-info btn-block button"  type="submit" value="Log in" name="log_in">
                     </div>
                 </form>
+                <small><p>Don't have an account? <a href="registration.php">Sign up here!</a></p></small>
             </div>
         </div>
     </div>

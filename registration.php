@@ -5,13 +5,13 @@
     $valid[] ='';
     if(isset($_POST['submit'])){
 
-echo $user_name             = $_POST['user_name'];
-echo $user_username         = $_POST['user_username'];
-echo $user_email             = $_POST['user_email'];
-echo $user_password         = $_POST['user_password'];
-echo $user_confirm_password = $_POST['user_confirm_password'];
+ $user_name             = $_POST['user_name'];
+ $user_username         = $_POST['user_username'];
+ $user_email             = $_POST['user_email'];
+ $user_password         = $_POST['user_password'];
+ $user_confirm_password = $_POST['user_confirm_password'];
     // $user_photo            = $_POST['user_photo'];
-echo   $password_hash         = password_hash($user_password, PASSWORD_DEFAULT);
+  $password_hash         = password_hash($user_password, PASSWORD_DEFAULT);
                 
      // username check
     // -------------------------------
@@ -195,6 +195,7 @@ echo   $password_hash         = password_hash($user_password, PASSWORD_DEFAULT);
                     <input class="btn btn-success btn-block" type="submit" value="Sign Up" name="submit">
                 </div>
                 </form>
+                 <small><p>Sign in <a href="log-in.php">click Here!</a></p></small>
             </div>
         </div>
     </div>
