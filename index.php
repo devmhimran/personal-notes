@@ -29,10 +29,10 @@ if(isset($_GET['logout']) AND $_GET['logout'] == 'user-logout'){
 <body>
 
     <div class="container" id="blur">
-        <div id="mySidenav" class="sidenav">
+      <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#">About</a>
-            <a href="#">Services</a>
+            <a href="index.php">Home</a>
+            <a href="post.php">Post</a>
             <a href="#">Clients</a>
             <a href="#">Contact</a>
           </div>
@@ -48,29 +48,55 @@ if(isset($_GET['logout']) AND $_GET['logout'] == 'user-logout'){
     <hr>
           
         <div class="row">
+            <?php  
+            
+
+            $user_id = $_SESSION['id'];
+            $sql_post = "SELECT * FROM posts WHERE user_id ='$user_id'";
+            $data = $conn -> query($sql_post);
+            // $post_data = $data -> fetch_assoc()
+                // $f_data = $data -> fetch_assoc();
+                
+            while ($post_data = $data -> fetch_assoc()):
+            ?>
             <div class="col-md-4"> 
-                <div class="card">
+                <div class="card mt-2">
                     <div class="card-body">
                         <div class="main-text">
                             <p>
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel impedit, asperiores quos similique suscipit sed esse recusandae eius reiciendis eligendi ipsa fugiat dignissimos tenetur nobis non! Culpa, pariatur error accusantium recusandae quos unde. Impedit maxime, beatae delectus aliquid facere neque rerum animi quia pariatur quam nisi quae ratione amet deserunt.
+                               <b><?php echo $post_data['content_title']; ?></b>
                             </p>
-                            <a class="btn btn-outline-info" onclick="toggle()" href="#">view</a>
+                            <a href="#<?php echo $post_data['content_id']; ?>" class=" btn btn-info btn-sm "  class="">View</a>
                         </div>
-                    </div>
-                    
+                    </div>                   
                 </div>
+              
+           
+
             </div>
-        </div>
-        <div class="popup" id="popup">
-            <h2>Lorem Ipsum</h2>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui maiores nulla unde facilis a fuga eveniet corrupti nostrum quas totam doloribus voluptatibus minus reprehenderit similique ex labore aperiam cum soluta accusamus, dolores dignissimos itaque obcaecati quos rerum? Qui excepturi veniam sint ipsam aliquam perspiciatis odio harum facere praesentium. Totam, officiis?
-            </p>
-            <a class="btn btn-dark" href="#" onclick="toggle()">Close</a>
-        </div>
+            <div class="modal1" id="<?php echo $post_data['content_id']; ?>">
+              <div class="background">
+                <div class="modal__content">
+                <a href="#" class="modal__close">&times;</a>
+                <h2 class="modal__heading"><?php echo $post_data['content_title']; ?></h2>
+                <p class="modal__paragraph"><?php echo $post_data['content_body']; ?></p>
+              </div>
+              </div>
+            </div>
+            <?php endwhile; ?>
+
+
+            <?php  ?>
+            <!-- Modal start -->
+
+            
+  
+        <!-- Modal end -->
+      
+        
        
-    </div>
+        </div>
+
 
 
 
@@ -99,3 +125,6 @@ function closeNav() {
 </script>
 </body>
 </html>
+
+
+

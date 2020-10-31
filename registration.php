@@ -83,7 +83,7 @@ echo   $password_hash         = password_hash($user_password, PASSWORD_DEFAULT);
 
             if ( $data['status'] == 'yes' ) {
 
-                 $sql = " INSERT INTO user_data ( user_name ,user_email,user_username,user_photo,user_password) values ('$user_name ','$user_email','$user_username','$photo_data','$password_hash',)";
+                 $sql = " INSERT INTO user_data ( user_name ,user_email,user_username,user_photo,user_password) values ('$user_name ','$user_email','$user_username','$photo_data','$password_hash')";
                  $conn -> query($sql);
                 set_msg('Successfully Sign Up');
 
