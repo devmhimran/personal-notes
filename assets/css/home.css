@@ -48,11 +48,18 @@ body {
       border-radius: 50%;
       object-fit: cover;
   }
-.right-side .dropdown{
-    color: #262524;
-    margin: 15px;
+.dropdown-menu {
+ padding: 10px
 }
-
+.dropdown-menu .drop-down-image{
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  margin: 0px auto 0px;
+}
+.logout{
+  color: #262524;
 }
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
