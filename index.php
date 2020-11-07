@@ -2,6 +2,7 @@
 
 include 'db/db.php';
 include 'db/function.php';
+  include 'exportpdf.php';
 
 session_start();
 if(!isset($_SESSION['id']) AND !isset($_SESSION['user_name']) AND !isset($_SESSION['user_username'])){
@@ -68,45 +69,31 @@ if(isset($_GET['logout']) AND $_GET['logout'] == 'user-logout'){
             while ($post_data = $data -> fetch_assoc()):
             ?>
             <div class="col-md-4"> 
-                <div class="card mt-2">
+                <div class="card mt-2 shadow">
                     <div class="card-body">
                         <div class="main-text">
                             <p>
                                <b><?php echo $post_data['content_title']; ?></b>
                             </p>
 
-                            <small>Created at <?php
+                            <div class="date mb-1 text-muted">
+                              <small class="text-muted">Created at <?php
                                 $date = strtotime($post_data['created_at']);
                                 echo "Time: ".date('d/m/y',$date)."<br>";
                              ?></small>
+                              
+                            </div>
                             <a href="#<?php echo $post_data['content_id']; ?>" class=" btn btn-info btn-sm " ><i class="far fa-eye"></i></a>
                             <a href="post-edit.php?id=<?php echo $post_data['content_id']; ?>" class=" btn btn-warning btn-sm "  ><i class="far fa-edit"></i></a>
                             <a id="data_delete" class="btn btn-danger btn-sm" href="delete.php?id=<?php echo $post_data['content_id'];  ?>"><i class="far fa-trash-alt"></i></a>
-                            <a href="#<?php echo $post_data['content_id']; ?>" class=" btn btn-info btn-sm " ><i class="fas fa-download"></i></a>
+                            <a href="download.php?file=<?php echo $post_data['pdf']; ?>" class=" btn btn-info btn-sm "  ><i class="fas fa-download"></i></a>
                         </div>
                     </div>                   
                 </div>
-              
-           
-
-
           <!-- delete modal  start-->
-
          <!-- Button trigger modal -->
-
-
 <!-- Modal -->
-
-
           <!-- delete modal end -->
-
-
-
-
-
-
-
-
 
 
 
@@ -122,9 +109,6 @@ if(isset($_GET['logout']) AND $_GET['logout'] == 'user-logout'){
               </div>
             </div>
             <?php endwhile; ?>
-
-
-            <?php  ?>
             <!-- Modal start -->
 
             
@@ -179,6 +163,15 @@ function closeNav() {
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
 
 
 

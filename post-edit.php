@@ -3,7 +3,7 @@
 
 include 'db/db.php';
 include 'db/function.php';
-$id = $_GET['id'];
+
 session_start();
 if(!isset($_SESSION['id']) AND !isset($_SESSION['user_name']) AND !isset($_SESSION['user_username'])){
       header("location:log-in.php");
@@ -25,23 +25,6 @@ if(isset($_GET['logout']) AND $_GET['logout'] == 'user-logout'){
 
 
 $valid[] ='';
-$user_id = $_SESSION['id'];
-if (isset($_POST['update'])) {
-  $content_title  = $_POST['content_title'];
-  $content_body   = $_POST['editor1'];
-
-  if (empty($content_title) || empty($content_body)) {
-    $valid[] =  "<p class='alert alert-danger'>Please Fill this box<button class='close' data-dissmiss='alert'>&times;</button></p>";
-  }else{
-     $sql = " UPDATE posts SET  content_title ='$content_title' , content_body = '$content_body' WHERE content_id = '$id'" ;
-                 $conn -> query($sql);
-                set_msg('Successfully Saved');
-
-
-                header("location: index.php");
-            }
-  }
-
 
 
 
@@ -58,7 +41,8 @@ if (isset($_POST['update'])) {
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/home.css">
-    <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+    <!-- <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script> -->
+      <script type="text/javascript" src="assets/tools/ckeditor/ckeditor.js"></script>
 </head>
 <body>
     <div class="container">
@@ -93,7 +77,7 @@ if (isset($_POST['update'])) {
 
 
 <div class="container">
-<div class="card w-75 mx-auto mt-5 mb-5">
+<div class="card w-100 mx-auto mt-5 mb-5">
   <div class="card-header">
     <h1>Post</h1>
   </div>
@@ -111,7 +95,7 @@ if (isset($_POST['update'])) {
             get_msg();
 
 
-            
+            $id = $_GET['id'];
             $sql = "SELECT * FROM posts WHERE content_id='$id'";
 
             $data =  $conn -> query($sql);
@@ -126,7 +110,7 @@ if (isset($_POST['update'])) {
       <div class="form-group">
         <input class="form-control" type="text" name="content_title" value="<?php echo $f_data['content_title']; ?>">
       </div>
-       <textarea name="editor1"><?php echo $f_data['content_body']; ?></textarea>
+      <textarea style="width: 100%;" class="ckeditor" name="editor" id=editor><?php echo $f_data['content_body']; ?></textarea>
        <button class="btn btn-warning mt-3" type="submit" name="update">Update</button>
        </form>
 <!-- </div> -->
@@ -166,3 +150,63 @@ function closeNav() {
 </script>
 </body>
 </html>
+
+
+<?php
+  //TechWorld3g - Please Support Us <3
+  //Facebook : https://www.facebook.com/TechWorld3g 
+  //Twitter : https://twitter.com/TechWorld3g 
+  //Youtube : https://www.youtube.com/user/TechWorld3g 
+  //Blog : https://tech-world3g.blogspot.com 
+  //Donate : https://imraising.tv/u/techworld3g﻿
+
+  include 'exportpdf.php';
+
+
+session_start();
+
+$file_name =  md5(rand());
+$user_id = $_SESSION['id'];
+if (isset($_POST['update'])) {
+  $content_title  = $_POST['content_title'];
+  $content_body   = $_POST['editor'];
+
+  if (empty($content_title) || empty($content_body)) {
+    $valid[] =  "<p class='alert alert-danger'>Please Fill this box<button class='close' data-dissmiss='alert'>&times;</button></p>";
+  }else{
+     $sql = " UPDATE posts SET  content_title ='$content_title' , content_body = '$content_body' , pdf = '$file_name' WHERE content_id = '$id'" ;
+                 $conn -> query($sql);
+                set_msg('Successfully Saved');
+
+
+                header("location: index.php");
+            }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+// echo $p = $_POST['editor'] ;
+  //--------------------------//
+  if((isset($_POST['editor'])) && (!empty(trim($_POST['editor'])))) //if content of CKEditor ISN'T empty
+  {
+    $posted_editor = trim($_POST['editor']); //get content of CKEditor
+    $path = "assets/pdf/$file_name.pdf"; //specify the file save location and the file name
+        
+    exportPDF($posted_editor,$path); //exportPDF function returns TRUE
+
+       
+  }
+
+  //Warning : if file already exists, it will be overwritten! 
+
+    // header('location: post-edit.php');

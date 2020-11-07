@@ -18,7 +18,7 @@ function photo_upload($files, $location , $format=['jpg','png','jpeg']){
 
 	$file_extension = explode('.', $photo);
 	$extension = strtolower(end($file_extension));
-  	$unique = md5(rand().time()).'.'.$extension;
+  $unique = md5(rand().time()).'.'.$extension;
 
 
   	

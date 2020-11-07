@@ -20,29 +20,7 @@ if(isset($_GET['logout']) AND $_GET['logout'] == 'user-logout'){
 
 
 
-
-
-
-
 $valid[] ='';
-$user_id = $_SESSION['id'];
-if (isset($_POST['save'])) {
-  $content_title  = $_POST['content_title'];
-  $content_body   = $_POST['editor1'];
-
-  if (empty($content_title) || empty($content_body)) {
-    $valid[] =  "<p class='alert alert-danger'>Please Fill this box<button class='close' data-dissmiss='alert'>&times;</button></p>";
-  }else{
-     $sql = " INSERT INTO posts (user_id, content_title, content_body) values ( '$user_id' ,'$content_title','$content_body')";
-                 $conn -> query($sql);
-                set_msg('Successfully Saved');
-
-
-                header("location: post.php");
-            }
-  }
-
-
 
 
 
@@ -58,7 +36,8 @@ if (isset($_POST['save'])) {
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/post.css">
-    <script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
+    <!-- <script src="assets/js/ckeditor.js"></script> -->
+    <script type="text/javascript" src="assets/tools/ckeditor/ckeditor.js"></script>
 </head>
 <body>
     <div class="container">
@@ -83,10 +62,10 @@ if (isset($_POST['save'])) {
 
 
 <div class="container">
-<div class="card w-75 mx-auto mt-5">
-  <div class="card-header">
+<div class="card  mx-auto mt-5">
+ <!--  <div class="card-header">
     <h1>Post</h1>
-  </div>
+  </div> -->
     <div class="card-body">
  <!--    <div class="card-title">
     <h2>Post</h2> -->
@@ -102,15 +81,17 @@ if (isset($_POST['save'])) {
 
 
     ?>
-    <form action="<?php $_SERVER['PHP_SELF']?>" method = "POST" enctype='multipart/form-data'>
+    <form action="process.php" method = "POST" enctype='multipart/form-data'>
       <div class="form-group">
-        <h3>Post Title</h3>
+        <h3>Create Doccument</h3>
       </div>
       <div class="form-group">
         <input class="form-control" type="text" name="content_title">
       </div>
-       <textarea name="editor1"></textarea>
-       <button class="btn btn-primary mt-3" type="submit" name="save">Save</button>
+      <textarea style="width: 100%;" class="ckeditor" name="editor" id=editor></textarea> <!-- CKEditor  !-->
+       <!-- when you c w-100lick this button, you will go to process.php !-->
+      <button class="btn btn-primary mt-3" type="submit" name="save">Save</button>
+      <button class="btn btn-info  mt-3" type="submit-1" value="Export to pdf" id="export">Export to pdf</button>
        </form>
 <!-- </div> -->
     </div>
