@@ -36,7 +36,7 @@ $valid[] ='';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title><?php echo $_SESSION['user_name']; ?></title>
     <link rel="stylesheet" href="assets/css/fontawesome/css/all.css">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -50,8 +50,7 @@ $valid[] ='';
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="index.php">Home</a>
             <a href="post.php">Post</a>
-            <a href="#">Clients</a>
-            <a href="#">Contact</a>
+
           </div>
           <span class="side-menu" style="font-size:30px;cursor:pointer" onclick="openNav()"><i class="fas fa-bars"></i></span>
           <div class="right-side">
